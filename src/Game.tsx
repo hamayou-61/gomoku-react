@@ -19,12 +19,18 @@ export default function Game() {
     setCurrentMove(nextMove);
   }
 
+  function handleBack() {
+    if (currentMove > 0) {
+      setCurrentMove(currentMove - 1);
+    }
+  }
+
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
       description = `${move+1}手目から開始`;
     } else {
-      description = "ゲーム開始";
+      description = "ゲームをリセット";
     }
 
     if (move === currentMove) {
@@ -47,17 +53,22 @@ export default function Game() {
   }
 
   return (
-    <div className="game">
-      <div className="game-board">
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
-      </div>
-      <div className="game-info">
-        <button onClick={() => setIsAscending(!isAscending)}>
-          {isAscending ? "降順" : "昇順"}
-        </button>
+    <>
+      <div className="game">
+        <div className="game-board">
+          <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+          <button onClick={handleBack}>
+            前へもどる
+          </button>
 
-        <ol>{moves}</ol>
+        </div>
+        <div className="game-info">
+          <button onClick={() => setIsAscending(!isAscending)}>
+            {isAscending ? "降順" : "昇順"}
+          </button>
+          <ol>{moves}</ol>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
