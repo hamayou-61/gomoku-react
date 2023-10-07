@@ -30,10 +30,10 @@ export default function Board({ xIsNext, squares, onPlay }: BoardProps) {
   }
 
   const renderRows = [];
-  for (let row = 0; row < 3; row++) {
+  for (let row = 0; row < 5; row++) {
     const columns = [];
-    for (let col = 0; col < 3; col++) {
-      const index = row * 3 + col;
+    for (let col = 0; col < 5; col++) {
+      const index = row * 5 + col;
       columns.push(
         <Square
           key={index}
